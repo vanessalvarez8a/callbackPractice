@@ -24,8 +24,16 @@ and what you should write is the sayHi function that makes the code above work,
 
 
 
-  //Code Here for first
-  
+// var first = function(arr, person) {
+//   for(var i = 0; i < arr.length; i++) {
+//     if (arr[i] === arr[0]) //searching for the first element of an array
+//       person(arr[i]);
+//       break;
+//   }
+// } 
+  var first = function(arr, person) {
+    person(arr[0]); //just pass the first arr[0];
+  }
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 first(names, function(firstName){
@@ -38,8 +46,18 @@ first(names, function(firstName){
 
 
 
+var last = function(arr, person) {
+  for (var i = 0; i < arr.length; i++) {
+    if (arr[i] === arr[arr.length-1]) {
+      person(arr[i]);
+      break;
+    }
+  }
+}
 
-  //Code Here for last
+// var last = function(arr, person) {
+//   person(arr[arr.length-1]);
+// }
 
 last(names, function(lastName){
   console.log('The last name in names is ' + lastName);
@@ -52,11 +70,10 @@ last(names, function(lastName){
 /* NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM */
 
 
+var multiply = function(num1, num2, cb) {
+  cb(num1 * num2);
+}
 
-
-
-
-  //Code Here for multiply
 
 multiply(4, 3, function(answer){
   console.log('The answer is ' + answer); //should console.log 12
@@ -67,8 +84,16 @@ multiply(4, 3, function(answer){
 
 
 /* NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM */
-
-
+var contains = function(arr, name, cb) {
+  var found = false; // to have a start point of false 
+  for (var i = 0; i < arr.length; i++) {
+     if (arr[i] === name) {
+      found = true; // the end point is true by finding name 'Colt' inside found
+      break;
+    }
+  }
+  cb(found); // we are passing found to cb and cb is result 
+} 
 
 
 
@@ -83,15 +108,20 @@ contains(names, 'Colt', function(result){
 });
 
 
-
-
-
 /* NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM */
 
 
 
+var uniq = function(arr, cb) {
+  var stored = [];
+  for (var i = 0; i < arr.length; i++) {
+    if(stored.indexOf(arr[i]) === -1) {
+      stored.push(arr[i]);
+    }
+  }
+  cb(stored);
+}
 
-    //Code Here for uniq
 
 uniq(names, function(uniqArr){
   console.log('The new names array with all the duplicate items removed is ', uniqArr);
@@ -103,10 +133,13 @@ uniq(names, function(uniqArr){
 
 /* NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM */
 
+var each = function(arr, cb) {
+  for (var i = 0; i < arr.length; i++) {
+   cb(arr[i], i); //passing the arr element and the index to cb function which is the callback function 
+  }
+}
+// the whole list and the position and the value for each one 
 
-
-
-    //Code Here for each
 
 each(names, function(item, indice){
   console.log('The item in the ' + indice + ' position is ' + item)
@@ -122,7 +155,24 @@ each(names, function(item, indice){
 
 
 
- //code here for getUserById
+// var getUserById = function(arr, id, cb) {
+//   arr.map(function(obj, index) {
+//     if(obj.id === id) {
+//       cb(obj);
+//     }
+//   });
+// }
+
+var getUserById = function(arr, id, cb) {
+  for (var i = 0; i < arr.length; i++) {
+    if (arr[i].id === id) {
+      cb(arr[i]);
+      break;
+    }
+  }
+}
+
+
 
 var users = [
   {
